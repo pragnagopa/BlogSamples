@@ -75,7 +75,6 @@ namespace AzureMobile.BlogSamples.Controllers
 
         public Task DeleteTodoItem(string id)
         {
-
             return DeleteAsync(id);
         }
     }
