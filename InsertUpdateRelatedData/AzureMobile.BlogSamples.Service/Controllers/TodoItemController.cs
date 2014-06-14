@@ -36,13 +36,23 @@ namespace AzureMobile.BlogSamples.Controllers
         public async Task<TodoItemDTO> PatchTodoItem(string id,
             Delta<TodoItemDTO> patch)
         {
+            //Read TodoItem to update from database so that EntityFramework updates
+            //existing entry
             TodoItem currentTodoItem = this.context.TodoItems.Include("Items")
                                     .First(j => (j.Id == id));
+
+            //Convert database type to client type in order to update only properties
+            //in the incoming patch request
             TodoItemDTO todoItemDTOUpdated = Mapper.Map<TodoItem, TodoItemDTO>
                                             (currentTodoItem);
+
+            //Apply changes updates from the the incoming request
             patch.Patch(todoItemDTOUpdated);
+
+            //Convert back to database type
             Mapper.Map<TodoItemDTO, TodoItem>(todoItemDTOUpdated, currentTodoItem);
 
+            //Apply updates to related items
             if (todoItemDTOUpdated.Items != null)
             {
                 currentTodoItem.Items = new List<Item>();
@@ -52,9 +62,11 @@ namespace AzureMobile.BlogSamples.Controllers
                                 .FirstOrDefault(j => (j.Id == currentItemDTO.Id));
                     if (existingItem != null)
                     {
+                        //Convert client type to database type
                         existingItem = Mapper.Map<ItemDTO, Item>(currentItemDTO,
                                 existingItem);
                         existingItem.TodoItem = currentTodoItem;
+                        //Attach to parent entity.
                         currentTodoItem.Items.Add(existingItem);
                         this.context.Entry(existingItem).State = System.Data.Entity.EntityState.Modified;
                     }
@@ -63,12 +75,15 @@ namespace AzureMobile.BlogSamples.Controllers
 
             await this.context.SaveChangesAsync();
 
+            //Convert to client type before returning the result
             var result = Mapper.Map<TodoItem, TodoItemDTO>(currentTodoItem);
             return result;
         }
 
         public async Task<IHttpActionResult> PostTodoItem(TodoItemDTO todoItemDTO)
         {
+            //Entity Framework inserts new TodoItem and any related entities
+            //sent in the incoming request
             TodoItemDTO current = await InsertAsync(todoItemDTO);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
