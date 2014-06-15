@@ -41,35 +41,55 @@ namespace AzureMobile.BlogSamples.Controllers
             TodoItem currentTodoItem = this.context.TodoItems.Include("Items")
                                     .First(j => (j.Id == id));
 
-            //Convert database type to client type in order to update only properties
-            //in the incoming patch request
-            TodoItemDTO todoItemDTOUpdated = Mapper.Map<TodoItem, TodoItemDTO>
-                                            (currentTodoItem);
+            TodoItemDTO updatedpatchEntity = patch.GetEntity();
+            ICollection<ItemDTO> updatedItems;
 
-            //Apply changes updates from the the incoming request
-            patch.Patch(todoItemDTOUpdated);
+            //Check if incoming request contains Items
+            bool requestContainsRelatedEntities = patch.GetChangedPropertyNames().Contains("Items");
 
-            //Convert back to database type
-            Mapper.Map<TodoItemDTO, TodoItem>(todoItemDTOUpdated, currentTodoItem);
+            //Remove related entities from the database. Comment following for loop if you do not
+            //want to delete related entities from the database
+            for (int i = 0; i < currentTodoItem.Items.Count; i++)
+            {
+                ItemDTO itemDTO = updatedpatchEntity.Items.FirstOrDefault(j =>
+                                (j.Id == currentTodoItem.Items.ElementAt(i).Id));
+                if (itemDTO == null)
+                {
+                    this.context.Items.Remove(currentTodoItem.Items.ElementAt(i));
+                }
+            }
+
+            if (requestContainsRelatedEntities)
+            {
+                //If request contains Items get the updated list from the patch
+                Mapper.Map<TodoItemDTO, TodoItem>(updatedpatchEntity, currentTodoItem);
+                updatedItems = updatedpatchEntity.Items;
+            }
+            else
+            {
+                //If request doest not have Items, then retain the original association
+                TodoItemDTO todoItemDTOUpdated = Mapper.Map<TodoItem, TodoItemDTO>
+                                                (currentTodoItem);
+                patch.Patch(todoItemDTOUpdated);
+                Mapper.Map<TodoItemDTO, TodoItem>(todoItemDTOUpdated, currentTodoItem);
+                updatedItems = todoItemDTOUpdated.Items;
+            }
 
             //Apply updates to related items
-            if (todoItemDTOUpdated.Items != null)
+            if (updatedpatchEntity.Items != null)
             {
                 currentTodoItem.Items = new List<Item>();
-                foreach (ItemDTO currentItemDTO in todoItemDTOUpdated.Items)
+                foreach (ItemDTO currentItemDTO in updatedItems)
                 {
+                    //Look up existing entry in database
                     Item existingItem = this.context.Items
                                 .FirstOrDefault(j => (j.Id == currentItemDTO.Id));
-                    if (existingItem != null)
-                    {
-                        //Convert client type to database type
-                        existingItem = Mapper.Map<ItemDTO, Item>(currentItemDTO,
-                                existingItem);
-                        existingItem.TodoItem = currentTodoItem;
-                        //Attach to parent entity.
-                        currentTodoItem.Items.Add(existingItem);
-                        this.context.Entry(existingItem).State = System.Data.Entity.EntityState.Modified;
-                    }
+                    //Convert client type to database type
+                    existingItem = Mapper.Map<ItemDTO, Item>(currentItemDTO,
+                            existingItem);
+                    existingItem.TodoItem = currentTodoItem;
+                    //Attach to parent entity.
+                    currentTodoItem.Items.Add(existingItem);
                 }
             }
 
