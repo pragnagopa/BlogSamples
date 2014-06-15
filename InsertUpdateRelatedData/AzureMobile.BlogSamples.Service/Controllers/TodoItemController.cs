@@ -47,20 +47,20 @@ namespace AzureMobile.BlogSamples.Controllers
             //Check if incoming request contains Items
             bool requestContainsRelatedEntities = patch.GetChangedPropertyNames().Contains("Items");
 
-            //Remove related entities from the database. Comment following for loop if you do not
-            //want to delete related entities from the database
-            for (int i = 0; i < currentTodoItem.Items.Count; i++)
-            {
-                ItemDTO itemDTO = updatedpatchEntity.Items.FirstOrDefault(j =>
-                                (j.Id == currentTodoItem.Items.ElementAt(i).Id));
-                if (itemDTO == null)
-                {
-                    this.context.Items.Remove(currentTodoItem.Items.ElementAt(i));
-                }
-            }
-
             if (requestContainsRelatedEntities)
             {
+                //Remove related entities from the database. Comment following for loop if you do not
+                //want to delete related entities from the database
+                for (int i = 0; i < currentTodoItem.Items.Count && updatedpatchEntity.Items!=null; i++)
+                {
+                    ItemDTO itemDTO = updatedpatchEntity.Items.FirstOrDefault(j =>
+                                    (j.Id == currentTodoItem.Items.ElementAt(i).Id));
+                    if (itemDTO == null)
+                    {
+                        this.context.Items.Remove(currentTodoItem.Items.ElementAt(i));
+                    }
+                }
+
                 //If request contains Items get the updated list from the patch
                 Mapper.Map<TodoItemDTO, TodoItem>(updatedpatchEntity, currentTodoItem);
                 updatedItems = updatedpatchEntity.Items;
@@ -75,9 +75,9 @@ namespace AzureMobile.BlogSamples.Controllers
                 updatedItems = todoItemDTOUpdated.Items;
             }
 
-            //Apply updates to related items
-            if (updatedpatchEntity.Items != null)
+            if (updatedItems != null)
             {
+                //Update related Items
                 currentTodoItem.Items = new List<Item>();
                 foreach (ItemDTO currentItemDTO in updatedItems)
                 {
