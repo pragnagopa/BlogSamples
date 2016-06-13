@@ -4,8 +4,16 @@ using Xamarin.Forms;
 
 namespace SnapAndSave
 {
+	public static class ViewModelLocator
+	{
+		
+
+	}
+
 	public class App : Application
 	{
+		public static CouponService CouponService = new CouponService ();
+
 		public App ()
 		{
 			var content = new MainPage ();

@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SnapAndSave.MainPage">
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:design="clr-namespace:SnapAndSave;assembly=SnapAndSave"
+		BindingContext = "{x:Static design:CouponsPageViewModel.FakeCoupons}"
+		x:Class="SnapAndSave.MainPage"
+		Title="Snap And Save">
 	<ContentPage.Content>
-		<Label Text="hello, world!" ></Label>
+		<StackLayout>
+			<SearchBar Placeholder="Enter coupon search"></SearchBar>
+			<ListView ItemsSource="{Binding}" RowHeight="70">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal">
+								<StackLayout Orientation="Vertical" Padding="10">
+									<Label Text="{Binding Description}"></Label>
+									<Label Text="{Binding Expiry, StringFormat='Expires: {0:d}'}"></Label>
+								</StackLayout>
+								<Image Source="{Binding PhotoUrl}" WidthRequest="100" HorizontalOptions="EndAndExpand"></Image>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>		
 	</ContentPage.Content>
 </ContentPage>

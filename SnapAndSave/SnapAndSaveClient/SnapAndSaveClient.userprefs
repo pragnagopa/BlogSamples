@@ -1,10 +1,30 @@
 ﻿<Properties StartupItem="iOS/SnapAndSave.iOS.csproj" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SnapAndSave/SnapAndSave.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SnapAndSave/ViewModels/CouponViewModel.cs">
     <Files>
-      <File FileName="SnapAndSave/MainPage.xaml" Line="1" Column="1" />
+      <File FileName="SnapAndSave/MainPage.xaml" Line="15" Column="54" />
       <File FileName="SnapAndSave/MainPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="SnapAndSave/SnapAndSave.cs" Line="10" Column="4" />
+      <File FileName="SnapAndSave/SnapAndSave.cs" Line="9" Column="3" />
+      <File FileName="SnapAndSave/Services/CouponService.cs" Line="15" Column="60" />
+      <File FileName="SnapAndSave/Models/Coupon.cs" Line="8" Column="4" />
+      <File FileName="SnapAndSave/ViewModels/CouponsPageViewModel.cs" Line="6" Column="20" />
+      <File FileName="SnapAndSave/ViewModels/CouponViewModel.cs" Line="6" Column="17" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SnapAndSaveClient" expanded="True">
+            <Node name="SnapAndSave" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="ViewModels" expanded="True">
+                <Node name="CouponViewModel.cs" selected="True" />
+              </Node>
+              <Node name="MainPage.xaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
