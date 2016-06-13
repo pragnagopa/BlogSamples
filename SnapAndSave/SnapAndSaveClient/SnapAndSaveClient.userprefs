@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="iOS/SnapAndSave.iOS.csproj" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SnapAndSave/SnapAndSave.cs">
+    <Files>
+      <File FileName="SnapAndSave/MainPage.xaml" Line="1" Column="1" />
+      <File FileName="SnapAndSave/MainPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="SnapAndSave/SnapAndSave.cs" Line="10" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SnapAndSave.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.54E97778-30F3-4941-9858-A82CF1A49FAA" />
+  <DisabledProjects>
+    <String>Droid/SnapAndSave.Droid.csproj</String>
+  </DisabledProjects>
+</Properties>
