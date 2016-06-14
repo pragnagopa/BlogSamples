@@ -32,13 +32,13 @@
   <ItemGroup>
     <Compile Include="SnapAndSave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Services\CouponService.cs" />
     <Compile Include="Models\Coupon.cs" />
     <Compile Include="ViewModels\CouponsPageViewModel.cs" />
     <Compile Include="ViewModels\CouponViewModel.cs" />
+    <Compile Include="Views\CouponListPage.xaml.cs">
+      <DependentUpon>CouponListPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
+    <EmbeddedResource Include="Views\CouponListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

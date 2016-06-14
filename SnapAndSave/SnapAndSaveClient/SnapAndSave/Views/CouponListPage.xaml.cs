@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace SnapAndSave
 {
-	public partial class MainPage : ContentPage
+	public partial class CouponListPage : ContentPage
 	{
-		public MainPage ()
+		public CouponListPage ()
 		{
 			InitializeComponent ();
 		}

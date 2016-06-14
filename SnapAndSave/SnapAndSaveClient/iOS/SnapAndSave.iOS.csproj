@@ -122,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\quiznos.jpg" />
-    <BundleResource Include="Resources\target-coupons.png" />
+    <BundleResource Include="Resources\target.png" />
     <BundleResource Include="Resources\jcpenny.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

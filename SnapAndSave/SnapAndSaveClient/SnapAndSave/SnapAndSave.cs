@@ -16,7 +16,7 @@ namespace SnapAndSave
 
 		public App ()
 		{
-			var content = new MainPage ();
+			var content = new CouponListPage ();
 
 			MainPage = new NavigationPage (content);
 		}
