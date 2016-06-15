@@ -59,7 +59,7 @@ namespace SnapAndSave
 			var photo = await Plugin.Media.CrossMedia.Current.PickPhotoAsync ();
 
 			if (photo != null) {
-				var coupon = new Coupon { Id = Guid.NewGuid ().ToString () };
+				var coupon = new Coupon { Id = Guid.NewGuid ().ToString (), Expiry = DateTime.Now };
 				coupon.Description = "Placeholder";
 
 				var targetPath = fileHelper.CopyFileToAppDirectory (coupon.Id, photo.Path);
@@ -70,7 +70,7 @@ namespace SnapAndSave
 		}
 
 		private async Task SyncAsync ()
-		{
+		{			
 			await couponService.SyncAsync ();
 			await SearchCouponsAsync ("");
 		}

@@ -6,12 +6,14 @@ using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.Files;
 using System.Linq;
+using Microsoft.WindowsAzure.MobileServices.Eventing;
 
 namespace SnapAndSave
 {
 	public class CouponService
 	{
 		private MobileServiceClient MobileService = new MobileServiceClient ("https://pbsnapandsave.azurewebsites.net");
+		private ImageFileSyncHandler<Coupon> fileSyncHandler;
 		private IMobileServiceSyncTable<Coupon> couponTable;
 
 		public async Task InitializeAsync ()
@@ -20,11 +22,15 @@ namespace SnapAndSave
 			store.DefineTable<Coupon> ();
 
 			this.couponTable = MobileService.GetSyncTable<Coupon> ();
+			this.fileSyncHandler = new ImageFileSyncHandler<Coupon> (couponTable);
 
-			this.MobileService.InitializeFileSyncContext (new ImageFileSyncHandler<Coupon> (couponTable), store);
+			this.MobileService.InitializeFileSyncContext (fileSyncHandler, store);
 			await this.MobileService.SyncContext.InitializeAsync (store, StoreTrackingOptions.AllNotificationsAndChangeDetection);
 
+			this.MobileService.EventManager.Subscribe<IMobileServiceEvent> (x => System.Diagnostics.Debug.WriteLine (x.Name));
+
 			await SyncAsync ();
+
 
 
 			//var coupon = new Coupon { Id = Guid.NewGuid ().ToString (), Description = "Test" };
@@ -69,7 +75,7 @@ namespace SnapAndSave
 		public async Task InsertCoupon (Coupon coupon, string filename)
 		{
 			await couponTable.InsertAsync (coupon);
-			var file = await couponTable.AddFileAsync (coupon, filename);
+			await couponTable.AddFileAsync (coupon, filename);
 		}
 
 		public async Task SyncAsync ()
@@ -78,6 +84,7 @@ namespace SnapAndSave
 			await couponTable.PushFileChangesAsync ();
 
 			await couponTable.PullAsync ("allcoupons", couponTable.CreateQuery ());
+			await fileSyncHandler.DownloadsComplete ();
 		}
 	}
 }
