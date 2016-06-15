@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace SnapAndSave
@@ -12,13 +12,14 @@ namespace SnapAndSave
 
 	public class App : Application
 	{
-		public static CouponService CouponService = new CouponService ();
+		public CouponService CouponService = new CouponService ();
 
 		public App ()
 		{
-			var content = new CouponListPage ();
-
-			MainPage = new NavigationPage (content);
+			//var viewModel = new CouponsPageViewModel (this.CouponService);
+			//var startPage = new CouponListPage (viewModel);
+			var startPage = new LaunchPage ();
+			MainPage = startPage;
 		}
 
 		protected override void OnStart ()

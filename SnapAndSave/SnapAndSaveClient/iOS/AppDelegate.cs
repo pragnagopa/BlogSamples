@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Plugin.Media;
 using UIKit;
 
 namespace SnapAndSave.iOS
@@ -13,6 +14,9 @@ namespace SnapAndSave.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
+			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init ();
+			SQLitePCL.CurrentPlatform.Init ();
+			CrossMedia.Current.Initialize ();
 
 			LoadApplication (new App ());
 

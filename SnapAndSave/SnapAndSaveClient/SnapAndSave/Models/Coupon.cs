@@ -7,6 +7,7 @@ namespace SnapAndSave
 		{
 		}
 
+		public string Id { get; set; }
 		public string Description { get; set; }
 		public DateTime Expiry { get; set; }
 	}

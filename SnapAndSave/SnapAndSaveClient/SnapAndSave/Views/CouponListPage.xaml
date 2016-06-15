@@ -3,13 +3,18 @@
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		xmlns:design="clr-namespace:SnapAndSave;assembly=SnapAndSave"
-		BindingContext = "{x:Static design:CouponsPageViewModel.FakeCoupons}"
+		BindingContext = "{x:Static design:CouponsPageViewModel.DesignTime}"
 		x:Class="SnapAndSave.CouponListPage"
 		Title="Snap And Save">
 	<ContentPage.Content>
 		<StackLayout>
-			<SearchBar Placeholder="Enter coupon search"></SearchBar>
-			<ListView ItemsSource="{Binding}" RowHeight="70">
+			<SearchBar Placeholder="Enter coupon search" TextChanged="Handle_SearchTextChanged"></SearchBar>
+			<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+				<Button Text="Add Coupon" Command="{Binding AddCouponCommand}"></Button>
+				<Label Text="        "></Label>
+				<Button Text="Refresh" Command="{Binding SyncCommand}"></Button>
+			</StackLayout>
+			<ListView ItemsSource="{Binding Coupons}" RowHeight="70">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>

@@ -7,6 +7,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.Media;
 
 namespace SnapAndSave.Droid
 {
@@ -21,6 +22,8 @@ namespace SnapAndSave.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
+			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init ();
+			CrossMedia.Current.Initialize ();
 
 			LoadApplication (new App ());
 		}

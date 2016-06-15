@@ -1,20 +1,55 @@
-﻿<Properties StartupConfiguration="{819373D1-3F7F-439F-8421-F754527A95B6}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SnapAndSave/Views/CouponListPage.xaml">
+﻿<Properties StartupConfiguration="{2CF5E4D6-D8D2-4204-A146-4E38F83EB37C}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Platform/iOSFileSyncHelper.cs">
     <Files>
-      <File FileName="SnapAndSave/SnapAndSave.cs" Line="9" Column="3" />
-      <File FileName="SnapAndSave/Services/CouponService.cs" Line="9" Column="1" />
-      <File FileName="SnapAndSave/Models/Coupon.cs" Line="10" Column="42" />
-      <File FileName="SnapAndSave/ViewModels/CouponsPageViewModel.cs" Line="10" Column="52" />
-      <File FileName="SnapAndSave/ViewModels/CouponViewModel.cs" Line="10" Column="25" />
-      <File FileName="Droid/Resources/AboutResources.txt" Line="1" Column="1" />
-      <File FileName="SnapAndSave/Views/CouponListPage.xaml" Line="1" Column="1" />
+      <File FileName="SnapAndSave/Views/CouponListPage.xaml.cs" Line="20" Column="4" />
+      <File FileName="SnapAndSave/ViewModels/CouponsPageViewModel.cs" Line="66" Column="47" />
+      <File FileName="SnapAndSave/Services/CouponService.cs" Line="80" Column="75" />
+      <File FileName="../../../../../../Library/Frameworks/Xamarin.iOS.framework/Versions/9.9.0.288/src/mono/mcs/class/referencesource/System.Core/System/Linq/Enumerable.cs" Line="930" Column="1" />
+      <File FileName="SnapAndSave/Views/CouponListPage.xaml" Line="14" Column="26" />
+      <File FileName="SnapAndSave/ViewModels/CouponViewModel.cs" Line="1" Column="1" />
+      <File FileName="SnapAndSave/Views/LaunchPage.xaml.cs" Line="32" Column="48" />
+      <File FileName="../../../../../../Library/Frameworks/Xamarin.iOS.framework/Versions/9.9.0.288/src/mono/mcs/class/referencesource/mscorlib/system/runtime/compilerservices/TaskAwaiter.cs" Line="187" Column="1" />
+      <File FileName="SnapAndSave/Services/IFileHelper.cs" Line="9" Column="10" />
+      <File FileName="iOS/Platform/iOSFileHelper.cs" Line="35" Column="4" />
+      <File FileName="SnapAndSave/Services/ImageFileSyncHandler.cs" Line="36" Column="40" />
+      <File FileName="SnapAndSave/Services/IFileSyncHelper.cs" Line="10" Column="8" />
+      <File FileName="iOS/Platform/iOSFileSyncHelper.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SnapAndSaveClient" expanded="True">
+            <Node name="SnapAndSave" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="ViewModels" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="CouponListPage.xaml" expanded="True" />
+                <Node name="LaunchPage.xaml" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="SnapAndSave.Droid" expanded="True">
+              <Node name="Packages" expanded="True" />
+              <Node name="Platform" expanded="True" />
+            </Node>
+            <Node name="SnapAndSave.iOS" expanded="True">
+              <Node name="Platform" expanded="True">
+                <Node name="iOSFileSyncHelper.cs" selected="True" />
+              </Node>
+              <Node name="Resources" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.SnapAndSave.Droid PreferredExecutionTarget="Android.Nexus6" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="SnapAndSave/Views/LaunchPage.xaml.cs" line="38" offsetX="245" offsetY="676" expression="t.Exception.InnerExceptions[0]" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.SnapAndSave.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.54E97778-30F3-4941-9858-A82CF1A49FAA" />
 </Properties>

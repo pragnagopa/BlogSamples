@@ -27,6 +27,10 @@ namespace SnapAndSave.Droid
 		public static void UpdateIdValues()
 		{
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::SnapAndSave.Droid.Resource.Attribute.actionBarSize;
+			global::Microsoft.WindowsAzure.Mobile.Files.Resource.String.ApplicationName = global::SnapAndSave.Droid.Resource.String.ApplicationName;
+			global::Microsoft.WindowsAzure.Mobile.Files.Resource.String.Hello = global::SnapAndSave.Droid.Resource.String.Hello;
+			global::PCLStorage.Resource.String.ApplicationName = global::SnapAndSave.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::SnapAndSave.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Animation
@@ -2945,6 +2949,12 @@ namespace SnapAndSave.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f060027
+			public const int ApplicationName = 2131099687;
+			
+			// aapt resource value: 0x7f060026
+			public const int Hello = 2131099686;
 			
 			// aapt resource value: 0x7f060012
 			public const int abc_action_bar_home_description = 2131099666;
