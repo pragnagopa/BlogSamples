@@ -27,8 +27,8 @@ namespace SnapAndSave.Droid
 			string targetPath = GetLocalFilePath (itemId, fileName);
 
 			File.Copy (filePath, targetPath);
-
-			return targetPath;
+            
+            return Path.Combine(itemId, fileName);
 		}
 
 		public string GetLocalFilePath (string itemId, string fileName)
@@ -39,7 +39,7 @@ namespace SnapAndSave.Droid
 				Directory.CreateDirectory (recordFilesPath);
 			}
 
-			return Path.Combine (recordFilesPath, fileName);
+			return Path.Combine (recordFilesPath, Path.GetFileName(fileName));
 		}
 
 		public void DeleteLocalFile (Microsoft.WindowsAzure.MobileServices.Files.MobileServiceFile file)
