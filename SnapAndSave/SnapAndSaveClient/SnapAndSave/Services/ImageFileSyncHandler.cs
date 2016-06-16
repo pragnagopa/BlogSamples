@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices.Files;
 using Microsoft.WindowsAzure.MobileServices.Files.Metadata;
@@ -13,6 +14,7 @@ namespace SnapAndSave
 		private readonly IMobileServiceSyncTable<T> couponTable;
 		private readonly IFileSyncHelper fileSyncHelper;
 		private readonly IFileHelper fileHelper;
+		private readonly List<Task> downloadTasks = new List<Task> ();
 
 		public ImageFileSyncHandler (IMobileServiceSyncTable<T> couponTable)
 		{
@@ -33,8 +35,16 @@ namespace SnapAndSave
 				fileHelper.DeleteLocalFile (file);
 			} else {
 				var filepath = fileHelper.GetLocalFilePath (file.ParentId, file.Name);
-				await this.fileSyncHelper.DownloadFileAsync (couponTable, file, filepath);
+				var task = this.fileSyncHelper.DownloadFileAsync (couponTable, file, filepath);
+					downloadTasks.Add (task);
+				await task;
 			}
+		}
+
+		public async Task DownloadsComplete ()
+		{
+			await Task.WhenAll (downloadTasks);
+			downloadTasks.Clear ();
 		}
 	}
 }

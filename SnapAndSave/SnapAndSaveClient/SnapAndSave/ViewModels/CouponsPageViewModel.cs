@@ -70,7 +70,7 @@ namespace SnapAndSave
 		}
 
 		private async Task SyncAsync ()
-		{
+		{			
 			await couponService.SyncAsync ();
 			await SearchCouponsAsync ("");
 		}
