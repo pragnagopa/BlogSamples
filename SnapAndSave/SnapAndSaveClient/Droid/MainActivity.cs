@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Plugin.Media;
+using Android.Gms.Common;
 
 namespace SnapAndSave.Droid
 {
@@ -26,7 +27,36 @@ namespace SnapAndSave.Droid
 			CrossMedia.Current.Initialize ();
 
 			LoadApplication (new App ());
-		}
-	}
+
+            if (IsPlayServicesAvailable())
+            {
+                var intent = new Intent(this, typeof(PushRegistrationIntentService));
+                StartService(intent);
+            }
+        }
+
+        public bool IsPlayServicesAvailable()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (resultCode != ConnectionResult.Success)
+            {
+                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+                {
+                    System.Diagnostics.Debug.WriteLine(GoogleApiAvailability.Instance.GetErrorString(resultCode));
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Sorry, this device is not supported for Gcm");
+                    Finish();
+                }
+                return false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Google Play Services is available.");
+                return true;
+            }
+        }
+    }
 }
 

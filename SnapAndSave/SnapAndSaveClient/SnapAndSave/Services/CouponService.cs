@@ -12,27 +12,36 @@ namespace SnapAndSave
 {
 	public class CouponService
 	{
-		private MobileServiceClient MobileService = new MobileServiceClient ("https://pbsnapandsave.azurewebsites.net");
+		private static MobileServiceClient mobileServiceClient = new MobileServiceClient (Constants.ApplicationURL);
 		private ImageFileSyncHandler<Coupon> fileSyncHandler;
 		private IMobileServiceSyncTable<Coupon> couponTable;
 
+        public static MobileServiceClient CouponMobileServiceClient
+        {
+            get
+            {
+                if(mobileServiceClient == null)
+                {
+                    mobileServiceClient = new MobileServiceClient(Constants.ApplicationURL);
+                }
+                return mobileServiceClient;
+            }
+        }
 		public async Task InitializeAsync ()
 		{
-			var store = new MobileServiceSQLiteStore ("localdata17.db");
+			var store = new MobileServiceSQLiteStore (Constants.LocalDb);
 			store.DefineTable<Coupon> ();
 
-			this.couponTable = MobileService.GetSyncTable<Coupon> ();
+			this.couponTable = mobileServiceClient.GetSyncTable<Coupon> ();
 			this.fileSyncHandler = new ImageFileSyncHandler<Coupon> (couponTable);
 
-			this.MobileService.InitializeFileSyncContext (fileSyncHandler, store);
-			await this.MobileService.SyncContext.InitializeAsync (store, StoreTrackingOptions.AllNotificationsAndChangeDetection);
+			mobileServiceClient.InitializeFileSyncContext (fileSyncHandler, store);
+			await mobileServiceClient.SyncContext.InitializeAsync (store, StoreTrackingOptions.AllNotificationsAndChangeDetection);
 
-			this.MobileService.EventManager.Subscribe<IMobileServiceEvent> (x => System.Diagnostics.Debug.WriteLine (x.Name));
+			mobileServiceClient.EventManager.Subscribe<IMobileServiceEvent> (x => System.Diagnostics.Debug.WriteLine (x.Name));
 
 			await SyncAsync ();
-
-
-
+            
 			//var coupon = new Coupon { Id = Guid.NewGuid ().ToString (), Description = "Test" };
 			//await couponTable.InsertAsync (coupon);
 
@@ -44,11 +53,8 @@ namespace SnapAndSave
 
 			//throw new Exception ("here we go");
 
-
 		}
-
-
-
+        
 		public async Task<IEnumerable<Coupon>> SearchCoupons (string searchInput)
 		{
 			var query = couponTable.CreateQuery ();
@@ -80,7 +86,7 @@ namespace SnapAndSave
 
 		public async Task SyncAsync ()
 		{
-			await MobileService.SyncContext.PushAsync ();
+			await mobileServiceClient.SyncContext.PushAsync ();
 			await couponTable.PushFileChangesAsync ();
 
 			await couponTable.PullAsync ("allcoupons", couponTable.CreateQuery ());
