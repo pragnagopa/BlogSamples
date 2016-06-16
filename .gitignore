@@ -3,3 +3,6 @@ bin/
 packages/
 *.dll
 .DS_Store
+.vs/
+SnapAndSave/SnapAndSaveService/SnapAndSaveService.v12.suo
+SnapAndSave/SnapAndSaveService/SnapAndSaveService/SnapAndSaveService.csproj.user
