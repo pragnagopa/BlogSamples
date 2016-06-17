@@ -1,0 +1,11 @@
+{
+  "frameworks": {
+    "net46":{
+      "dependencies": {
+        "Microsoft.ProjectOxford.Vision": "1.0.354",
+        "WindowsAzure.Storage" : "7.0.0" 
+      }
+    }
+  }
+}
+

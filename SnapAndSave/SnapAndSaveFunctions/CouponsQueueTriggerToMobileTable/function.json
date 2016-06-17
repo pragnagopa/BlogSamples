@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "couponsqueue",
+      "connection": "MS_AzureStorageAccountConnectionString"
+    },
+    {
+      "type": "mobileTable",
+      "name": "inputRecord",
+      "tableName": "coupon",
+      "id": "{Id}",
+      "connection": "MobileAppUri",
+      "direction": "in"
+    },
+    {
+      "type": "notificationHub",
+      "name": "notification",
+      "hubName": "SnapAndSaveNH",
+      "connection": "MS_NotificationHubConnectionString",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

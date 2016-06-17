@@ -1,0 +1,10 @@
+{
+  "frameworks": {
+    "net46":{
+      "dependencies": {
+        "Microsoft.Azure.NotificationHubs": "1.0.5",
+        "Microsoft.Azure.Mobile.Client": "2.0.1"                 
+      }
+    }
+  }
+}
