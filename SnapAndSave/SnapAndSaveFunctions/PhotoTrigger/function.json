@@ -1,0 +1,19 @@
+{
+  "bindings": [
+    {
+      "name": "photoBlob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "coupons",
+      "connection": "MS_AzureStorageAccountConnectionString"
+    },
+    {
+      "type": "queue",
+      "name": "outputRecordQueueItem",
+      "queueName": "couponsqueue",
+      "connection": "MS_AzureStorageAccountConnectionString",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

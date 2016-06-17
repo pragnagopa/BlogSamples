@@ -1,0 +1,24 @@
+{
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "10 * * * * *"
+    },
+    {
+      "type": "mobileTable",
+      "name": "table",
+      "connection": "MobileAppUri",
+      "direction": "in"
+    },
+    {
+      "type": "notificationHub",
+      "name": "notification",
+      "hubName": "SnapAndSaveNH",
+      "connection": "MS_NotificationHubConnectionString",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
