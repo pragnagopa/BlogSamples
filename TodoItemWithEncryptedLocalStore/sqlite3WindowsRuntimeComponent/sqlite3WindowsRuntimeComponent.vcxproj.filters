@@ -7,9 +7,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Common\see-sqlite3.c" />
+    <ClInclude Include="..\Common\sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Common\sqlite3.h" />
+    <ClCompile Include="..\Common\sqlite3.c" />
   </ItemGroup>
 </Project>

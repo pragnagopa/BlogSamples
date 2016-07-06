@@ -30,7 +30,7 @@
     <ClInclude Include="..\Common\sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Common\see-sqlite3.c">
+    <ClCompile Include="..\Common\sqlite3.c">
       <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </CompileAsWinRT>
     </ClCompile>
@@ -137,7 +137,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>..\Common\see-sqlite3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\Common\sqlite3.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

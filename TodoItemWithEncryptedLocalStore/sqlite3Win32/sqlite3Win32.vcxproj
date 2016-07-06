@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ModuleDefinitionFile>..\Common\see-sqlite3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\Common\sqlite3.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -147,10 +147,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Common\see-sqlite3.c" />
+    <ClInclude Include="..\Common\sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Common\sqlite3.h" />
+    <ClCompile Include="..\Common\sqlite3.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
