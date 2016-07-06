@@ -22,7 +22,7 @@ namespace TodoItemWithEncryptedLocalStore
         }
 
         public static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://pgopawebjobs.azurewebsites.net"
+            "https://YourMobileApp.azurewebsites.net"
         );
     }
 }
